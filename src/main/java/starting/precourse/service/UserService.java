@@ -20,6 +20,7 @@ import starting.precourse.exception.TargetNotFoundException;
 import starting.precourse.jwt.JwtFilter;
 import starting.precourse.jwt.TokenProvider;
 import starting.precourse.repository.UserRepository;
+import starting.precourse.util.UserUtil;
 
 import java.util.Collections;
 
@@ -28,10 +29,12 @@ import java.util.Collections;
 public class UserService {
     private final UserRepository userRepository;
     private final TokenProvider tokenProvider;
+    private final UserUtil userUtil;
 
-    public UserService(UserRepository userRepository, TokenProvider tokenProvider) {
+    public UserService(UserRepository userRepository, TokenProvider tokenProvider, UserUtil userUtil) {
         this.userRepository = userRepository;
         this.tokenProvider = tokenProvider;
+        this.userUtil = userUtil;
     }
 
     public User signup(UserDto userDto) {
@@ -65,5 +68,9 @@ public class UserService {
         httpHeaders.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
 
         return new ResponseEntity<>(new TokenDto(jwt), httpHeaders, HttpStatus.OK);
+    }
+
+    public User profile() {
+        return userUtil.getLoggedInUser();
     }
 }
