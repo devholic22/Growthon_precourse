@@ -5,7 +5,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import starting.precourse.entity.User;
 import starting.precourse.exception.NotLoggedInException;
-import starting.precourse.exception.TargetNotFoundException;
 import starting.precourse.repository.UserRepository;
 
 @Component
