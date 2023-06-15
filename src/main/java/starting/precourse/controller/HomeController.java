@@ -17,6 +17,11 @@ public class HomeController {
         this.userService = userService;
     }
 
+    @GetMapping("/test")
+    public ResponseEntity<String> home() {
+        return ResponseEntity.ok("test page");
+    }
+
     @GetMapping("/profile")
     public ResponseEntity<?> profile() {
         try {

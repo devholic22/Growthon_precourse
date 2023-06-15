@@ -55,9 +55,9 @@ public class SecurityConfig {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/**").permitAll()
-                .requestMatchers("/auth/signup").permitAll()
+                .requestMatchers("/auth/register").permitAll()
                 .requestMatchers("/auth/login").permitAll()
+                .requestMatchers("/test").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .apply(new JwtSecurityConfig(tokenProvider));
